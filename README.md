@@ -18,3 +18,7 @@ An A0 portrait poster with optional KIT, HLRS, or custom branding.
 - Each `posterrow` takes one relative weight per column. Use a row inside a section for a shared heading, or place sections inside columns for independent stacks.
 
 Font overrides belong in the brand profile. HLRS selects Overpass when it is installed and the poster is built with LuaLaTeX (`latexmk -lualatex main.tex`) or XeLaTeX. pdfLaTeX uses the base font.
+
+## Credits
+
+`poster.sty` is adapted from KITposter v1.02, © 2022–2025 Karlsruhe Institute of Technology. The bundled KIT and HLRS logos are credited to their respective institutions.
