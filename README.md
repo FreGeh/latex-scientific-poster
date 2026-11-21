@@ -25,8 +25,10 @@ For your own institution, copy [brands/template.tex](brands/template.tex), updat
 
 Font overrides belong in the brand profile. HLRS selects Overpass when it is installed and the poster is built with LuaLaTeX (`latexmk -lualatex main.tex`) or XeLaTeX. pdfLaTeX uses the base font.
 
-## Credits
+## License and credits
 
-- `poster.sty` is adapted from KITposter v1.02, © 2022–2025 Karlsruhe Institute of Technology. [Official KIT LaTeX templates](https://kit-cd.km.kit.edu/latex.php)
-- The `ipe-*` color swatches in the KIT profile come from the Scalable Algorithms group’s presentation template. [KIT Scalable Algorithms Ipe template](https://scale.iti.kit.edu/resources/templates/start#ipe_presentations)
-- The bundled KIT and HLRS logos are credited to their respective institutions.
+The LaTeX code, original sample figures, and generic text wordmark are available under the [MIT License](LICENSE). 
+
+KIT's research posters inspired the layout. [KIT poster templates](https://kit-cd.km.kit.edu/latex.php)
+
+The KIT and HLRS logos remain subject to their respective owners’ rights. This project is independent of both institutions.

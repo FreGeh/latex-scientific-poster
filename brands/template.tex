@@ -11,27 +11,34 @@
 \institute{\textbf{[Research institute here]}}
 \instadd{[Research group here]}
 
-\definecolor{posterPlum}{HTML}{394D67}
-\definecolor{posterBlue}{HTML}{875B3B}
-\definecolor{posterTeal}{HTML}{38665F}
-\definecolor{posterLime}{HTML}{605576}
-\definecolor{posterOchre}{HTML}{846709}
+% Section accents and neutral text colors.
+\definecolor{posterPlum}{HTML}{903C73}    % Plum
+\definecolor{posterBlue}{HTML}{536A9C}  % Slate blue
+\definecolor{posterForest}{HTML}{355E45} % Forest green
+\definecolor{posterLime}{HTML}{60792E} % Olive
 
-% Figure and text defaults.
-\colorlet{cleanborder}{posterTeal}
-\colorlet{cleanpale}{posterTeal!7}
-\colorlet{cleangray}{black!68}
-\colorlet{cleanlight}{posterPlum!18}
-\colorlet{cleandark}{black!95}
-\colorlet{cleanblue}{posterBlue}
+% Darkened for white heading text. Use !10 for a pale fill.
+\definecolor{posterRed}{HTML}{A43D47}    % Brick red
+\definecolor{posterOrange}{HTML}{A34F24} % Burnt orange
+\definecolor{posterOchre}{HTML}{846709}  % Golden ochre
+\definecolor{posterCyan}{HTML}{126F8C}   % Deep cyan
+\colorlet{posterTeal}{posterForest}        % Shared accent name
 
-% List markers, institutional text, and links.
-\colorlet{posterPrimary}{posterTeal}
-\colorlet{posterSecondary}{posterPlum}
+\definecolor{cleandark}{HTML}{222222}
+\definecolor{cleangray}{HTML}{5C5C5C}
+\colorlet{cleanborder}{posterBlue}
+\colorlet{cleanblue}{posterCyan}
+\colorlet{cleanlight}{black!11}
+\colorlet{cleanpale}{posterBlue!7}
+\colorlet{posterPrimary}{cleanborder}
+\colorlet{posterSecondary}{cleanblue}
 \colorlet{posterMuted}{cleangray}
 
-% Optional figure-specific overrides.
-% \colorlet{figureDemand}{posterPlum}
-% \colorlet{figureCapacity}{posterBlue}
-% \colorlet{figureBaseline}{cleangray}
-% \colorlet{figureProposed}{posterTeal}
+% Use the body ink for every list level.
+\renewcommand{\posterlistcolor}[1]{cleandark}
+
+% Data series use warm accents against cooler baselines.
+\colorlet{figureDemand}{posterRed}
+\colorlet{figureCapacity}{posterBlue}
+\colorlet{figureBaseline}{posterBlue}
+\colorlet{figureProposed}{posterOrange}
