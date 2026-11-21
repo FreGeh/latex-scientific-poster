@@ -27,4 +27,6 @@ Font overrides belong in the brand profile. HLRS selects Overpass when it is ins
 
 ## Credits
 
-`poster.sty` is adapted from KITposter v1.02, © 2022–2025 Karlsruhe Institute of Technology. The bundled KIT and HLRS logos are credited to their respective institutions.
+- `poster.sty` is adapted from KITposter v1.02, © 2022–2025 Karlsruhe Institute of Technology. [Official KIT LaTeX templates](https://kit-cd.km.kit.edu/latex.php)
+- The `ipe-*` color swatches in the KIT profile come from the Scalable Algorithms group’s presentation template. [KIT Scalable Algorithms Ipe template](https://scale.iti.kit.edu/resources/templates/start#ipe_presentations)
+- The bundled KIT and HLRS logos are credited to their respective institutions.
