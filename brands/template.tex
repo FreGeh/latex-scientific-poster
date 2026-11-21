@@ -1,6 +1,11 @@
-% A text mark makes this profile usable before logo artwork is available.
+% Institution identity. Replace the text mark with a vector logo when available.
 \renewcommand{\posterbrandlogo}{{\fontsize{58bp}{65bp}\selectfont\bfseries Field Studies Lab}}
-\renewcommand{\posterpartnerlogo}{}
+% \renewcommand{\posterbrandlogo}{\includegraphics[
+%   width=200mm,height=95mm,keepaspectratio]{brands/your-logo.pdf}}
+
+% \renewcommand{\posterpartnerlogo}{\includegraphics[
+%   width=100mm,height=42mm,keepaspectratio]{brands/partner-logo.pdf}}
+
 \renewcommand{\posterbrandfooter}{Field Studies Lab}
 \renewcommand{\posterbrandwebsite}{\url{example.org}}
 \institute{\textbf{Research Division}}
@@ -11,14 +16,22 @@
 \definecolor{posterTeal}{HTML}{38665F}
 \definecolor{posterLime}{HTML}{605576}
 \definecolor{posterOchre}{HTML}{846709}
-% Diagram strokes, fills, labels, grid lines, type and secondary series.
+
+% Figure and text defaults.
 \colorlet{cleanborder}{posterTeal}
 \colorlet{cleanpale}{posterTeal!7}
 \colorlet{cleangray}{black!68}
 \colorlet{cleanlight}{posterPlum!18}
 \colorlet{cleandark}{black!95}
 \colorlet{cleanblue}{posterBlue}
-% Colors used by the base layout for list markers, institutional text and links.
+
+% List markers, institutional text, and links.
 \colorlet{posterPrimary}{posterTeal}
 \colorlet{posterSecondary}{posterPlum}
 \colorlet{posterMuted}{cleangray}
+
+% Optional figure-specific overrides.
+% \colorlet{figureDemand}{posterPlum}
+% \colorlet{figureCapacity}{posterBlue}
+% \colorlet{figureBaseline}{cleangray}
+% \colorlet{figureProposed}{posterTeal}

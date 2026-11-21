@@ -1,6 +1,8 @@
 # Research poster template
 
-An A0 portrait poster with optional KIT, HLRS, or custom branding.
+An A0 portrait poster with optional KIT, HLRS, or custom branding. Edit the title and authors in `main.tex` and the poster body in `content.tex`. 
+
+For your own institution, copy [brands/template.tex](brands/template.tex), update the logo, affiliation, website, and palette, then select the new profile by filename in `main.tex`.
 
 | File | Purpose |
 |---|---|
@@ -13,7 +15,7 @@ An A0 portrait poster with optional KIT, HLRS, or custom branding.
 
 ## Branding and layout
 
-- Enable `\useposterbrand{kit}`, `\useposterbrand{hlrs}`, or `\useposterbrand{independent}` in `main.tex`. Leaving it commented gives the unbranded layout. Use `brands/independent.tex` as the starting point for a new profile.
+- Enable `\useposterbrand{kit}`, `\useposterbrand{hlrs}`, or `\useposterbrand{your-institute}` in `main.tex`. Leaving it commented gives the unbranded layout.
 - Set shared spacing and heading treatment with `\postersetup` in `main.tex`. Choose section accents in `content.tex`. Callouts inherit the current accent unless given a color.
 - Each `posterrow` takes one relative weight per column. Use a row inside a section for a shared heading, or place sections inside columns for independent stacks.
 
