@@ -1,7 +1,7 @@
 % KIT-inspired section bands and Obsidian-inspired ink and neutrals.
 \definecolor{posterPlum}{HTML}{963579}    % Plum
 \definecolor{posterBlue}{HTML}{566DA3}  % Slate blue
-\definecolor{posterTeal}{HTML}{007C6D}    % Teal
+\definecolor{posterForest}{HTML}{355E45} % Forest green
 \definecolor{posterLime}{HTML}{60792E} % Olive
 
 % Darkened for white heading text. Use !10 for a pale fill.
@@ -9,13 +9,23 @@
 \definecolor{posterOrange}{HTML}{A64E12} % Burnt orange
 \definecolor{posterOchre}{HTML}{846709}  % Golden ochre
 \definecolor{posterCyan}{HTML}{126F8C}   % Deep cyan
+\colorlet{posterTeal}{posterForest}        % Shared accent name
 
 \definecolor{cleandark}{HTML}{222222}
 \definecolor{cleangray}{HTML}{5C5C5C}
-\colorlet{cleanborder}{posterTeal}
-\colorlet{cleanblue}{posterBlue}
+\colorlet{cleanborder}{posterBlue}
+\colorlet{cleanblue}{posterCyan}
 \colorlet{cleanlight}{black!11}
-\colorlet{cleanpale}{posterTeal!7}
+\colorlet{cleanpale}{posterBlue!7}
 \colorlet{posterPrimary}{cleanborder}
 \colorlet{posterSecondary}{cleanblue}
 \colorlet{posterMuted}{cleangray}
+
+% Use the body ink for every list level.
+\renewcommand{\posterlistcolor}[1]{cleandark}
+
+% Data series use warm accents against cooler baselines.
+\colorlet{figureDemand}{posterRed}
+\colorlet{figureCapacity}{posterBlue}
+\colorlet{figureBaseline}{posterBlue}
+\colorlet{figureProposed}{posterOrange}

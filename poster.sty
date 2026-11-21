@@ -283,14 +283,15 @@
 \leftmarginv  \leftmargini
 \leftmarginvi \leftmargini
 \labelwidth\dimexpr\leftmargini-\labelsep
-\def\labelenumi  {\textcolor{posterPrimary}{\bfseries\theenumi.}}
-\def\labelenumii {\textcolor{posterPrimary}{\bfseries\theenumii.}}
-\def\labelenumiii{\textcolor{posterPrimary}{\bfseries\theenumiii.}}
-\def\labelenumiv {\textcolor{posterPrimary}{\bfseries\theenumiv.}}
-\def\labelitemi  {\textcolor{posterPrimary}{\KIT@labelitem}}
-\def\labelitemii {\textcolor{posterSecondary}{\KIT@labelitem}}
-\def\labelitemiii{\textcolor{posterMuted}{\KIT@labelitem}}
-\def\labelitemiv {\textcolor{posterMuted}{\bfseries\textendash}}
+\newcommand{\posterlistcolor}[1]{#1}
+\def\labelenumi  {\textcolor{\posterlistcolor{posterPrimary}}{\bfseries\theenumi.}}
+\def\labelenumii {\textcolor{\posterlistcolor{posterPrimary}}{\bfseries\theenumii.}}
+\def\labelenumiii{\textcolor{\posterlistcolor{posterPrimary}}{\bfseries\theenumiii.}}
+\def\labelenumiv {\textcolor{\posterlistcolor{posterPrimary}}{\bfseries\theenumiv.}}
+\def\labelitemi  {\textcolor{\posterlistcolor{posterPrimary}}{\KIT@labelitem}}
+\def\labelitemii {\textcolor{\posterlistcolor{posterSecondary}}{\KIT@labelitem}}
+\def\labelitemiii{\textcolor{\posterlistcolor{posterMuted}}{\KIT@labelitem}}
+\def\labelitemiv {\textcolor{\posterlistcolor{posterMuted}}{\bfseries\textendash}}
 \leftmargini1em
 \leftmargin\leftmargini
 \leftmarginii1em
@@ -1061,9 +1062,6 @@
 \newcommand{\posterbody}{\fontsize{\posterbodysize}{\posterleading}\selectfont}
 \newcommand{\postersmall}{\fontsize{24}{29}\selectfont}
 \newcommand{\postertiny}{\fontsize{20}{25}\selectfont}
-\newcommand{\posterheading}{\fontsize{42}{47}\selectfont\bfseries}
-\newcommand{\posterlead}{\fontsize{34}{43}\selectfont}
-\newcommand{\posterlabel}[1]{{\postersmall\bfseries\color{cleanborder}#1}}
 \newcommand{\posteremph}[1]{{\bfseries\color{cleandark}#1}}
 \newcommand{\postercaption}[1]{\par\vspace{3mm}{\postersmall\color{cleangray}#1}\par}
 \newcommand{\posterspacer}{\par\vspace{\postergap}}
@@ -1126,13 +1124,13 @@
   \setlength{\parsep}{0pt}%
 }
 
+\AtBeginDocument{\providecolor{posterSubheading}{named}{cleandark}}
 \newcommand{\postersubhead}[1]{%
-  \par\vspace{3mm}{\fontsize{37}{42}\selectfont\bfseries\color{cleandark}#1}%
+  \par\vspace{3mm}{\fontsize{37}{42}\selectfont\bfseries\color{posterSubheading}#1}%
   \par\vspace{3mm}
 }
 
 % Divider between two independent subtopics, if needed.
-\newcommand{\posterdivider}{\par\vspace{4mm}\noindent\color{cleanlight}\rule{\linewidth}{1pt}\color{cleandark}\vspace{3mm}}
 
 \AtBeginDocument{%
   \color{cleandark}%
@@ -1145,10 +1143,11 @@
   fonttitle=\fontsize{\posterheadsize}{\posterheadsize}\selectfont},
   poster outline/.style={arc=3mm,colbacktitle=white,coltitle=\posteraccent,
   halign title=center,fonttitle=\fontsize{\posterheadsize}{\posterheadsize}\selectfont\bfseries}}
+\tcbset{poster callout/.style={}}
 \newtcolorbox{postercallout}[2][\posteraccent]{enhanced,sharp corners,
   title={#2},colframe=#1,colback=#1!10,colbacktitle=#1,coltitle=\posterbandtext,
   fonttitle=\posterbody\bfseries,boxrule=1bp,boxsep=0pt,
-  left=4mm,right=4mm,top=2mm,bottom=2mm,toptitle=1mm,bottomtitle=1mm}
+  left=4mm,right=4mm,top=2mm,bottom=2mm,toptitle=1mm,bottomtitle=1mm,poster callout}
 
 \newcommand{\makeposterheader}{%
   \maketitle

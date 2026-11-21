@@ -16,3 +16,5 @@ An A0 portrait poster with optional KIT, HLRS, or custom branding.
 - Enable `\useposterbrand{kit}`, `\useposterbrand{hlrs}`, or `\useposterbrand{independent}` in `main.tex`. Leaving it commented gives the unbranded layout. Use `brands/independent.tex` as the starting point for a new profile.
 - Set shared spacing and heading treatment with `\postersetup` in `main.tex`. Choose section accents in `content.tex`. Callouts inherit the current accent unless given a color.
 - Each `posterrow` takes one relative weight per column. Use a row inside a section for a shared heading, or place sections inside columns for independent stacks.
+
+Font overrides belong in the brand profile. HLRS selects Overpass when it is installed and the poster is built with LuaLaTeX (`latexmk -lualatex main.tex`) or XeLaTeX. pdfLaTeX uses the base font.

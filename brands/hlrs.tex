@@ -1,3 +1,22 @@
+% Overpass is the HLRS typeface. The base font remains available as a fallback.
+\ifdefined\setsansfont
+  \IfFontExistsTF{Overpass}{%
+    \ifdefined\directlua
+      \IfFontExistsTF{Overpass-VariableFont_wght.ttf}{%
+        \setsansfont{Overpass}[
+          Renderer=HarfBuzz,
+          BoldFont=Overpass-VariableFont_wght.ttf, BoldFeatures={Weight=700},
+          BoldItalicFont=Overpass-Italic-VariableFont_wght.ttf, BoldItalicFeatures={Weight=700}
+        ]%
+      }{\setsansfont{Overpass}}%
+    \else
+      \setsansfont{Overpass}%
+    \fi
+  }{\PackageWarningNoLine{poster}{Overpass unavailable; using the base font}}%
+\else
+  \PackageWarningNoLine{poster}{Use LuaLaTeX or XeLaTeX for HLRS Overpass}%
+\fi
+
 % Original SVG: https://www.hlrs.de/_assets/35e76e737fd336b01e3bbe61044635a4/dist/img/hlrs_logo_en.svg
 % Vector logo for direct inclusion by pdfLaTeX.
 \renewcommand{\posterbrandlogo}{\includegraphics[width=200mm,height=95mm,keepaspectratio]{brands/hlrs-logo.pdf}}
@@ -5,22 +24,49 @@
 \renewcommand{\posterbrandfooter}{High-Performance Computing Center Stuttgart}
 \renewcommand{\posterbrandwebsite}{\url{www.hlrs.de}}
 \institute{\textbf{High-Performance Computing Center Stuttgart}}
-\instadd{University of Stuttgart}
+\instadd{\textcolor{hlrsDarkBlue}{Future Computing Group}\\University of Stuttgart}
 
-% Original logo colors.
-\definecolor{hlrsCyan}{HTML}{00B2E8}
-\definecolor{cleandark}{HTML}{1D1D1B}
-% Poster-specific section colors, chosen for white heading text.
-\definecolor{posterPlum}{HTML}{183D50}
-\definecolor{posterBlue}{HTML}{52616C}
-\definecolor{posterTeal}{HTML}{006C8D}
-\definecolor{posterLime}{HTML}{255F68}
-\definecolor{posterOchre}{HTML}{846709}
-\colorlet{cleanborder}{posterTeal}
-\colorlet{cleanblue}{posterBlue}
-\colorlet{cleangray}{posterBlue}
-\colorlet{cleanpale}{hlrsCyan!7}
-\colorlet{cleanlight}{posterPlum!18}
-\colorlet{posterPrimary}{posterTeal}
-\colorlet{posterSecondary}{posterPlum}
+% Corporate Design Manual, March 2023, p. 9.
+\definecolor{hlrsBlue}{RGB}{0,178,233}
+\definecolor{hlrsDarkBlue}{RGB}{29,61,145}
+\definecolor{hlrsYellow}{RGB}{248,234,66}
+\definecolor{hlrsGreen}{RGB}{187,208,55}
+\definecolor{hlrsRed}{RGB}{232,70,21}
+\definecolor{hlrsTurquoise}{RGB}{162,214,217}
+\definecolor{hlrsGray}{RGB}{248,248,248}
+\definecolor{hlrsBlack}{RGB}{0,0,0}
+\definecolor{hlrsWhite}{RGB}{255,255,255}
+\colorlet{hlrsCyan}{hlrsBlue}
+
+% Shared swatch names mapped to the dark end of the HLRS blue gradient.
+\colorlet{posterPlum}{hlrsDarkBlue}
+\definecolor{posterBlue}{HTML}{194F9E}
+\definecolor{posterTeal}{HTML}{165AA7}
+\definecolor{posterLime}{HTML}{1366B0}
+\definecolor{posterOchre}{HTML}{1072B9}
+
+\colorlet{cleandark}{hlrsBlack}
+\definecolor{cleangray}{HTML}{52616C}
+\colorlet{cleanborder}{hlrsDarkBlue}
+\colorlet{cleanblue}{hlrsBlue!65!hlrsDarkBlue}
+\colorlet{cleanpale}{hlrsGray}
+\colorlet{cleanlight}{hlrsBlue!18!hlrsWhite}
+\colorlet{posterPrimary}{hlrsDarkBlue}
+\colorlet{posterSecondary}{posterLime}
 \colorlet{posterMuted}{cleangray}
+\colorlet{posterSubheading}{hlrsDarkBlue}
+
+% Data colors retain the corporate hues with enough depth for thin marks.
+\colorlet{figureDemand}{hlrsRed!75!hlrsBlack}
+\colorlet{figureCapacity}{hlrsDarkBlue}
+\colorlet{figureBaseline}{cleangray}
+\colorlet{figureProposed}{hlrsGreen!68!hlrsBlack}
+
+\tcbset{
+  poster band/.append style={
+    colframe=hlrsDarkBlue!38!hlrsWhite,
+    borderline north={1bp}{0pt}{hlrsBlue}
+  },
+  poster outline/.append style={colframe=hlrsDarkBlue!38!hlrsWhite},
+  poster callout/.append style={colback=hlrsGray}
+}

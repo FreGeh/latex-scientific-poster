@@ -1,3 +1,10 @@
+\AtBeginDocument{%
+  \providecolor{figureDemand}{named}{cleanborder}
+  \providecolor{figureCapacity}{named}{cleanblue}
+  \providecolor{figureBaseline}{named}{cleanblue}
+  \providecolor{figureProposed}{named}{cleanborder}
+}
+
 % Editable vector example figures. Replace with \includegraphics{your-figure.pdf}.
 % All numerical displays are schematic, NOT empirical results.
 \newcommand{\contextdiagram}{%
@@ -35,10 +42,10 @@
     \foreach \x/\lab in {48/T1,124/T2,200/T3,276/T4}
        {\draw[cleangray,line width=0.7pt] (\x,0)--(\x,-5) node[below] {\lab};}
     \foreach \y in {30,60,90} {\draw[cleanlight,line width=0.7pt] (0,\y)--(302,\y);}
-    \draw[cleanborder,line width=3.5pt] (0,21)--(85,37)--(170,62)--(265,102);
-    \draw[cleanblue,densely dashed,line width=3pt] (0,23)--(85,33)--(170,43)--(265,52);
-    \node[anchor=west,color=cleanborder] at (185,107) {Demand};
-    \node[anchor=west,color=cleanblue] at (188,43) {Capacity};
+    \draw[figureDemand,line width=3.5pt] (0,21)--(85,37)--(170,62)--(265,102);
+    \draw[figureCapacity,densely dashed,line width=3pt] (0,23)--(85,33)--(170,43)--(265,52);
+    \node[anchor=west,color=figureDemand] at (185,107) {Demand};
+    \node[anchor=west,color=figureCapacity] at (188,43) {Capacity};
     \node[anchor=north west,font=\fontsize{17}{21}\selectfont,color=cleangray] at (0,-18) {Illustrative trend -- not measured data};
   \end{tikzpicture}%
 }
@@ -61,10 +68,10 @@
       \draw[cleanlight] (0,\y)--(305,\y);
       \node[anchor=east,color=cleangray] at (-6,\y) {\lab};
     }
-    \fill[cleanblue!75] (43,0) rectangle (91,100);
-    \fill[cleanborder!90] (117,0) rectangle (165,137);
-    \fill[cleanblue!75] (196,0) rectangle (244,100);
-    \fill[cleanborder!90] (270,0) rectangle (318,118);
+    \fill[figureBaseline!75] (43,0) rectangle (91,100);
+    \fill[figureProposed!90] (117,0) rectangle (165,137);
+    \fill[figureBaseline!75] (196,0) rectangle (244,100);
+    \fill[figureProposed!90] (270,0) rectangle (318,118);
     \node[anchor=north,align=center] at (67,-4) {Base};
     \node[anchor=north,align=center] at (141,-4) {New};
     \node[anchor=north,align=center] at (220,-4) {Base};
