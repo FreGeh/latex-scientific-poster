@@ -1,0 +1,70 @@
+\postersetup{accent=posterPlum}
+\begin{postersection}{Data flow in scientific computing}
+  Scientific workflows connect data production, distributed storage,
+  and large-scale computation. Efficient data access keeps compute resources productive.
+  \par\vspace{4mm}
+  \centering\resizebox{0.94\linewidth}{!}{\contextdiagram}\par
+  \postercaption{Data-intensive workflows connect measurements and simulations to storage infrastructure and large-scale analysis.}
+\end{postersection}
+
+\posterspacer
+
+\postersetup{accent=posterBlue}
+\begin{postersection}{Computing requirements and available capacity}
+  \begin{posterrow}{2,3}
+    \postercolumn{
+      \begin{postercallout}{Constraints on job execution}
+        \begin{itemize}\posterbullets
+          \item Data movement can dominate end-to-end execution time.
+          \item Growing workloads compete for storage and network bandwidth.
+          \item Improving locality can reduce repeated transfers.
+        \end{itemize}
+      \end{postercallout}
+    }
+    \postercolumn{
+      \centering\resizebox{0.90\linewidth}{!}{\challengechart}\par
+      \postercaption{Illustrative trend showing the potential divergence between resource demand and capacity. Not measured data.}
+    }
+  \end{posterrow}
+\end{postersection}
+
+\posterspacer
+
+\postersetup{accent=posterTeal}
+\begin{postersection}{Proposed approach and evaluation}
+  \begin{posterrow}{1,1}
+    \postercolumn{
+      \postersubhead{System architecture}
+      \centering\resizebox{0.97\linewidth}{!}{\systemdiagram}\par
+      \postercaption{A transparent data-access layer can stage reused files closer to computation.}
+      \vspace{5mm}
+      \raggedright
+      \begin{itemize}\posterbullets
+        \item \posteremph{Design:} place frequently reused data near the computation.
+        \item \posteremph{Implementation:} provide a transparent access layer.
+        \item \posteremph{Practical constraint:} report memory and network overhead.
+      \end{itemize}
+    }
+    \postercolumn{
+      \postersubhead{Experimental results}
+      \centering\resizebox{0.91\linewidth}{!}{\resultsbars}\par
+      \postercaption{Schematic normalized values, not empirical results. Replace before publication.}
+      \vspace{6mm}
+      \raggedright
+      \begin{itemize}\posterbullets
+        \item \posteremph{Evaluation:} compare against a defined baseline.
+        \item \posteremph{Reporting:} include variability and repeatability.
+        \item \posteremph{Interpretation:} explain when the approach helps and when it does not.
+      \end{itemize}
+    }
+  \end{posterrow}
+\end{postersection}
+
+\posterspacer
+
+\postersetup{accent=posterOchre}
+\begin{postersection}{Main takeaways and next steps}
+  Measure cache reuse, transfer volume and job runtime across representative workloads.
+  Report the storage cost alongside any reduction in repeated transfers.
+  \par\vspace{3mm}{\postertiny\textbf{Contact} \quad researcher@example.org}
+\end{postersection}

@@ -1,0 +1,75 @@
+% Editable vector example figures. Replace with \includegraphics{your-figure.pdf}.
+% All numerical displays are schematic, NOT empirical results.
+\newcommand{\contextdiagram}{%
+  \begin{tikzpicture}[x=1mm,y=1mm,>=Latex,font=\fontsize{23}{27}\selectfont]
+    \foreach \radius in {11,19,28} {
+      \draw[cleangray,thick] (90,0) circle (\radius);
+    }
+    \foreach \angle in {18,60,127,175,225,304} {
+      \draw[cleanblue,very thick] (90,0) to[bend left=10] +(\angle:32);
+    }
+    \foreach \x/\y in {280/14,321/28,349/-4,307/-20,268/-13} {
+      \draw[cleangray,thick] (310,2) -- (\x,\y);
+      \fill[cleanborder] (\x,\y) circle (4);
+    }
+    \foreach \x in {503,530,557} {
+      \foreach \y in {-24,-15,...,21} {
+        \draw[fill=cleanlight] (\x,\y) rectangle +(22,7);
+        \fill[cleanborder] (\x+3,\y+3) circle (1);
+      }
+    }
+    \foreach \x in {166,392} {
+      \draw[-Latex,cleanborder,line width=5pt] (\x,0) -- +(66,0);
+    }
+    \foreach \x/\labeltext in {
+      90/Measurements and simulations,310/Distributed storage,540/Parallel analysis
+    } {
+      \node at (\x,-47) {\labeltext};
+    }
+  \end{tikzpicture}%
+}
+\newcommand{\challengechart}{%
+  \begin{tikzpicture}[x=1mm,y=1mm,font=\fontsize{21}{25}\selectfont]
+    \draw[->,line width=1.6pt] (0,0) -- (320,0) node[below right] {Time};
+    \draw[->,line width=1.6pt] (0,0) -- (0,118) node[above,align=left] {Relative\\demand};
+    \foreach \x/\lab in {48/T1,124/T2,200/T3,276/T4}
+       {\draw[cleangray,line width=0.7pt] (\x,0)--(\x,-5) node[below] {\lab};}
+    \foreach \y in {30,60,90} {\draw[cleanlight,line width=0.7pt] (0,\y)--(302,\y);}
+    \draw[cleanborder,line width=3.5pt] (0,21)--(85,37)--(170,62)--(265,102);
+    \draw[cleanblue,densely dashed,line width=3pt] (0,23)--(85,33)--(170,43)--(265,52);
+    \node[anchor=west,color=cleanborder] at (185,107) {Demand};
+    \node[anchor=west,color=cleanblue] at (188,43) {Capacity};
+    \node[anchor=north west,font=\fontsize{17}{21}\selectfont,color=cleangray] at (0,-18) {Illustrative trend -- not measured data};
+  \end{tikzpicture}%
+}
+\newcommand{\systemdiagram}{%
+  \begin{tikzpicture}[x=1mm,y=1mm,>=Latex,font=\fontsize{21}{25}\selectfont]
+    \tikzset{sys/.style={draw=cleanborder,fill=cleanpale,rounded corners=4mm,
+      line width=1.2pt,align=center,minimum width=95mm,minimum height=65mm,inner xsep=4mm}}
+    \node[sys] (source) at (48,34) {Remote\\data source};
+    \node[sys] (cache) at (166,34) {Local\\data cache};
+    \node[sys] (worker) at (284,34) {Compute\\workers};
+    \draw[->,line width=2.5pt,cleanborder] (source.east) -- (cache.west);
+    \draw[->,line width=2.5pt,cleanborder] (cache.east) -- (worker.west);
+  \end{tikzpicture}%
+}
+\newcommand{\resultsbars}{%
+  \begin{tikzpicture}[x=1mm,y=1mm,font=\fontsize{21}{25}\selectfont]
+    \draw[->,line width=1.6pt] (0,0) -- (320,0);
+    \draw[->,line width=1.6pt] (0,0) -- (0,157) node[above] {Relative measure};
+    \foreach \y/\lab in {0/0,50/0.5,100/1.0,150/1.5} {
+      \draw[cleanlight] (0,\y)--(305,\y);
+      \node[anchor=east,color=cleangray] at (-6,\y) {\lab};
+    }
+    \fill[cleanblue!75] (43,0) rectangle (91,100);
+    \fill[cleanborder!90] (117,0) rectangle (165,137);
+    \fill[cleanblue!75] (196,0) rectangle (244,100);
+    \fill[cleanborder!90] (270,0) rectangle (318,118);
+    \node[anchor=north,align=center] at (67,-4) {Base};
+    \node[anchor=north,align=center] at (141,-4) {New};
+    \node[anchor=north,align=center] at (220,-4) {Base};
+    \node[anchor=north,align=center] at (294,-4) {New};
+    \node[anchor=north,color=cleangray,font=\fontsize{17}{20}\selectfont] at (104,-30) {Metric A};
+    \node[anchor=north,color=cleangray,font=\fontsize{17}{20}\selectfont] at (256,-30) {Metric B};
+  \end{tikzpicture}%
+}

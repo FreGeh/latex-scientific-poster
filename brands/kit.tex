@@ -1,0 +1,87 @@
+\renewcommand{\posterbrandlogo}{%
+  \iflanguage{ngerman}{%
+    \IfFileExists{brands/kitlogo_de_rgb.pdf}{%
+      \includegraphics[width=200mm,height=95mm,keepaspectratio]{brands/kitlogo_de_rgb.pdf}%
+    }{\includegraphics[width=200mm,height=95mm,keepaspectratio]{brands/kitlogo_en_rgb.pdf}}%
+  }{\includegraphics[width=200mm,height=95mm,keepaspectratio]{brands/kitlogo_en_rgb.pdf}}%
+}
+\renewcommand{\posterbrandfooter}{KIT -- \iflanguage{ngerman}{Die Universität in der Helmholtz-Gemeinschaft}{The University in the Helmholtz Association}}
+\renewcommand{\posterbrandwebsite}{\url{www.kit.edu}}
+\institute{\textbf{Institute / Department}}
+\instadd{Research group or project name}
+
+% KIT corporate colors.
+\definecolor{KITgreen}     {RGB}{0,150,130}
+\definecolor{KITblue}      {RGB}{70,100,170}
+\definecolor{KITgray}      {gray}{0.3}
+\definecolor{KITlightgray} {gray}{0.84}
+\definecolor{KITcyan}      {RGB}{35,161,224}
+\definecolor{KITlightgreen}{RGB}{140,182,60}
+\definecolor{KITforestgreen}     {RGB}{39,103,56}
+\definecolor{KITblack}     {RGB}{0,0,0}
+\definecolor{KITpurple}    {RGB}{163,16,124}
+\definecolor{KITorange}    {RGB}{223,155,27}
+\definecolor{KITyellow}    {RGB}{252,229,0}
+\definecolor{KITred}       {RGB}{162,34,35}
+\definecolor{KITbrown}     {RGB}{167,130,46}
+
+% Default semantic colors for the shared layout.
+\colorlet{posterPrimary}{KITgreen}
+\colorlet{posterSecondary}{KITblue}
+\colorlet{posterMuted}{KITgray}
+
+% Colors are consistent with KIT poster palette, but less saturated in content.
+\definecolor{cleanborder}{RGB}{49,116,92}
+\definecolor{cleanpale}{RGB}{238,241,238}
+\definecolor{cleangray}{RGB}{83,94,92}
+\definecolor{cleanlight}{RGB}{221,230,225}
+\definecolor{cleandark}{RGB}{0,0,0}
+\definecolor{cleanblue}{RGB}{57,104,141}
+
+% Reference colors sampled from the rendered A0 posters.
+\definecolor{posterPlum}{HTML}{AC2889}
+\definecolor{posterBlue}{HTML}{6B83BB}
+\definecolor{posterTeal}{HTML}{009682}
+\definecolor{posterLime}{HTML}{A3C563}
+\definecolor{posterOchre}{HTML}{886821}
+\definecolor{posterHOPC}{HTML}{4472C1}
+\definecolor{posterHelmholtz}{HTML}{00A990}
+
+% Exact swatches from 00-template.ipe. The prefix avoids overriding xcolor names.
+\definecolor{ipe-black}{rgb}{0,0.176,0.298}
+\definecolor{ipe-blue-dark}{rgb}{0.047,0.325,0.494}
+\definecolor{ipe-blue1}{rgb}{0.274,0.392,0.666}
+\definecolor{ipe-blue2}{rgb}{0.529,0.607,0.784}
+\definecolor{ipe-blue3}{rgb}{0.784,0.819,0.901}
+\definecolor{ipe-brown1}{rgb}{0.654,0.509,0.18}
+\definecolor{ipe-brown2}{rgb}{0.776,0.682,0.466}
+\definecolor{ipe-brown3}{rgb}{0.898,0.854,0.752}
+\definecolor{ipe-cyan1}{rgb}{0.137,0.631,0.878}
+\definecolor{ipe-cyan2}{rgb}{0.439,0.76,0.921}
+\definecolor{ipe-cyan3}{rgb}{0.741,0.89,0.964}
+\definecolor{ipe-gray1}{gray}{0.301}
+\definecolor{ipe-gray2}{gray}{0.596}
+\definecolor{ipe-gray3}{gray}{0.89}
+\definecolor{ipe-gray4}{rgb}{0.659,0.725,0.769}
+\definecolor{ipe-gray5}{rgb}{0.855,0.882,0.902}
+\definecolor{ipe-green-dark}{rgb}{0.153,0.404,0.22}
+\definecolor{ipe-green-darkest}{rgb}{0,0.353,0.314}
+\definecolor{ipe-green1}{rgb}{0,0.588,0.509}
+\definecolor{ipe-green2}{rgb}{0.352,0.733,0.682}
+\definecolor{ipe-green3}{rgb}{0.701,0.878,0.854}
+\definecolor{ipe-maygreen1}{rgb}{0.549,0.713,0.235}
+\definecolor{ipe-maygreen2}{rgb}{0.709,0.815,0.505}
+\definecolor{ipe-maygreen3}{rgb}{0.866,0.913,0.772}
+\definecolor{ipe-orange1}{rgb}{0.874,0.607,0.105}
+\definecolor{ipe-orange2}{rgb}{0.921,0.745,0.419}
+\definecolor{ipe-orange3}{rgb}{0.964,0.882,0.733}
+\definecolor{ipe-purple1}{rgb}{0.639,0.062,0.486}
+\definecolor{ipe-purple2}{rgb}{0.768,0.392,0.666}
+\definecolor{ipe-purple3}{rgb}{0.894,0.717,0.847}
+\definecolor{ipe-red-bright}{rgb}{0.827,0,0.082}
+\definecolor{ipe-red1}{rgb}{0.635,0.133,0.137}
+\definecolor{ipe-red2}{rgb}{0.764,0.439,0.439}
+\definecolor{ipe-red3}{rgb}{0.89,0.741,0.741}
+\definecolor{ipe-yellow1}{rgb}{0.988,0.898,0}
+\definecolor{ipe-yellow2}{rgb}{0.992,0.933,0.352}
+\definecolor{ipe-yellow3}{rgb}{0.996,0.968,0.701}

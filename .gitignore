@@ -1,0 +1,22 @@
+# LaTeX build products
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+/main.pdf
+/posterscaled.pdf
+
+# Local design references
+/00-template.ipe
+/examples/
+
+# Local tools, credentials, and editor files
+/.agents/
+/.aws/
+/.codex/
+/.env
+/.env.*
+.DS_Store
+*~
