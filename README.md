@@ -4,7 +4,9 @@ An A0 portrait poster with optional KIT, HLRS, or custom branding. Edit the titl
 
 For your own institution, copy [brands/template.tex](brands/template.tex), update the logo, affiliation, website, and palette, then select the new profile by filename in `main.tex`.
 
-<img src="docs/template-preview.png" alt="A0 sample poster using the custom brand template" width="420">
+<a href="template-preview.png">
+  <img src="template-preview.png" alt="A0 sample poster using the custom brand template" width="540">
+</a>
 
 | File | Purpose |
 |---|---|
