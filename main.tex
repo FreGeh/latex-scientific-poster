@@ -1,16 +1,50 @@
+\RequirePackage{fix-cm}
 \documentclass[UKenglish]{article}
 \usepackage{poster}
 
-% Uncomment to select a brand: kit, hlrs, or your profile name.
+% --- Poster settings ---------------------------------------------------------
+% Paper presets: a0-landscape, a0-portrait, conference-wide.
+\posterpaper{a0-landscape}
+% Brand profiles: template, kit, hlrs. Comment out for an unbranded poster.
 \useposterbrand{template}
+% Use canvas for explicit rows or columns for automatic columns on wide paper.
+\postersetup{flow=canvas}
 
-\title{Research on Data-Intensive Computing%
-  \texorpdfstring{\\}{ }in Scientific Applications}
+\title{Data locality for repeated\texorpdfstring{\\}{ }scientific workflows}
 \author{A. Researcher, B. Researcher, C. Researcher}
+\newcommand{\postercontactemail}{researcher@example.org}
 
+% --- Typography overrides ---------------------------------------------------
+\postersetup{title size=62bp,title leading=80bp,heading size=46bp}
+\DeclareMathSizes{40bp}{40bp}{28bp}{20bp}
+
+% --- Bibliography and figures -----------------------------------------------
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\renewcommand*{\bibfont}{\postersmall}
 \input{figures.tex}
 
+% --- Document layout --------------------------------------------------------
 \begin{document}
 \makeposterheader
-\input{content.tex}
+\begin{postercontent}
+  \input{content.tex}
+\end{postercontent}
+
+% Keep the bibliography outside the body so every content row precedes it.
+\posterspacer
+\vfill
+\begingroup
+  \postersmall
+  \setlength{\parskip}{0pt}
+  \setlength{\bibitemsep}{\posterpargap}
+  \defbibheading{posterreferences}{\noindent\textbf{References}\par\nobreak}
+  \begin{posterrow}{3,1}
+    \postercolumn{\printbibliography[heading=posterreferences]}
+    \postercolumn{%
+      \raggedleft\textbf{Contact}\par
+      \postercontactemail\par
+    }
+  \end{posterrow}
+\endgroup
 \end{document}

@@ -1,70 +1,113 @@
-\postersetup{accent=posterPlum}
-\begin{postersection}{Data flow in scientific computing}
-  Scientific workflows connect data production, distributed storage,
-  and large-scale computation. Efficient data access keeps compute resources productive.
-  \par\vspace{4mm}
-  \centering\resizebox{0.94\linewidth}{!}{\contextdiagram}\par
-  \postercaption{Data-intensive workflows connect measurements and simulations to storage infrastructure and large-scale analysis.}
-\end{postersection}
+\begin{posterrow}{1,1}
+  \postercolumn{
+    \postersetup{accent=posterPlum}
+    \begin{postersection}{When does staging data pay off?}
+      Ensemble analyses often scan the same inputs with different parameters.
+      Reading those inputs from shared storage on every pass consumes network
+      bandwidth and can leave compute workers waiting \cite{example2025}.
 
-\posterspacer
-
-\postersetup{accent=posterBlue}
-\begin{postersection}{Computing requirements and available capacity}
-  \begin{posterrow}{2,3}
-    \postercolumn{
-      \begin{postercallout}{Constraints on job execution}
-        \begin{itemize}\posterbullets
-          \item Data movement can dominate end-to-end execution time.
-          \item Growing workloads compete for storage and network bandwidth.
-          \item Improving locality can reduce repeated transfers.
-        \end{itemize}
+      \begin{postercallout}{Research question}
+        How much reuse does a workflow need before a node-local cache pays back
+        the cost of copying the input?
       \end{postercallout}
-    }
-    \postercolumn{
-      \centering\resizebox{0.90\linewidth}{!}{\challengechart}\par
-      \postercaption{Illustrative demand and capacity trends.}
-    }
-  \end{posterrow}
-\end{postersection}
+      \postersubhead{Data paths}
+      {\centering\resizebox{.74\linewidth}{!}{\datapaths}\par
+      \postercaption{The cache fetches input from shared storage on the first pass.
+        Later passes read the staged copy on the same node.}}
+    \end{postersection}
+
+    \posterspacer
+    \postersetup{accent=posterBlue}
+    \begin{postersection}{Benchmark design}
+      Use the same input, worker count and analysis for both paths. Start each
+      cached run with an empty cache and include the initial copy in wall time.
+
+      \begin{posterrow}{1,1}
+        \postercolumn{
+          \postersubhead{What to measure}
+          \begin{itemize}[nosep,leftmargin=*]
+            \item End-to-end wall time, including staging.
+            \item Bytes read from shared storage.
+            \item Peak local storage per worker node.
+          \end{itemize}
+        }
+        \postercolumn{
+          \postersubhead{Test matrix}
+          \begin{tabular*}{\linewidth}{@{}l@{\extracolsep{\fill}}l@{}}
+            \hline
+            Parameter & Setting \\
+            \hline
+            Input size & 64 GiB \\
+            Worker nodes & 4 \\
+            Passes & 1--4 \\
+            Repeats per setting & 5 \\
+            \hline
+          \end{tabular*}
+        }
+      \end{posterrow}
+
+      \posterspacer
+      Alternate the run order and record shared-storage load to help distinguish
+      caching effects from changes in contention.
+
+      \textbf{Trade-off to report.} Four passes read 256 GiB from shared storage
+      with direct reads versus 64 GiB with caching, assuming the staged copy
+      stays resident. Report the peak local footprint alongside that reduction.
+    \end{postersection}
+  }
+  \postercolumn{
+    \postersetup{accent=posterTeal}
+    \begin{postersection}{Runtime improves from the second pass}
+      {\centering\resizebox{\linewidth}{!}{\runtimechart}\par
+      \postercaption{Synthetic benchmark data. Points show illustrative medians.
+        Error bars on the cached series show illustrative min--max ranges.}}
+      The first cached pass costs 16\,s more than a direct read. By the fourth
+      pass, staging saves 128\,s (31\%) in total wall time. The cached series
+      grows more slowly because each additional pass reads from local storage.
+    \end{postersection}
+
+    \posterspacer
+    \postersetup{accent=posterOchre}
+    \begin{postersection}{A rule for deciding what to cache}
+      With direct-read time $t_d$, cached-pass time $t_c$, and one-time staging
+      cost $S$, a cache saves time after $n$ passes when
+      \[ n(t_d-t_c)>S. \]
+      In the synthetic example, $t_d=104\,\mathrm{s}$, $t_c=56\,\mathrm{s}$, and
+      $S=64\,\mathrm{s}$, so two passes cover the staging cost.
+
+      \begin{postercallout}{Where to test next}
+        Vary input size and reuse together. Include runs where the working set
+        exceeds local capacity to see how eviction changes the break-even point.
+      \end{postercallout}
+
+    \end{postersection}
+  }
+\end{posterrow}
 
 \posterspacer
-
-\postersetup{accent=posterTeal}
-\begin{postersection}{Proposed approach and evaluation}
-  \begin{posterrow}{1,1}
-    \postercolumn{
-      \postersubhead{System architecture}
-      \centering\resizebox{0.97\linewidth}{!}{\systemdiagram}\par
-      \postercaption{A transparent data-access layer can stage reused files closer to computation.}
-      \vspace{5mm}
-      \raggedright
-      \begin{itemize}\posterbullets
-        \item \posteremph{Design:} place frequently reused data near the computation.
-        \item \posteremph{Implementation:} provide a transparent access layer.
-        \item \posteremph{Practical constraint:} report memory and network overhead.
-      \end{itemize}
-    }
-    \postercolumn{
-      \postersubhead{Experimental results}
-      \centering\resizebox{0.91\linewidth}{!}{\resultsbars}\par
-      \postercaption{Illustrative normalized values.}
-      \vspace{6mm}
-      \raggedright
-      \begin{itemize}\posterbullets
-        \item \posteremph{Evaluation:} compare against a defined baseline.
-        \item \posteremph{Reporting:} include variability and repeatability.
-        \item \posteremph{Interpretation:} explain when the approach helps and when it does not.
-      \end{itemize}
-    }
-  \end{posterrow}
-\end{postersection}
-
-\posterspacer
-
-\postersetup{accent=posterOchre}
-\begin{postersection}{Main takeaways and next steps}
-  Measure cache reuse, transfer volume and job runtime across representative workloads.
-  Report the storage cost alongside any reduction in repeated transfers.
-  \par\vspace{3mm}{\postertiny\textbf{Contact} \quad researcher@example.org}
-\end{postersection}
+\begingroup
+\postersetup{treatment=outline,accent=cleanborder,heading size=35bp}
+\begin{posterrow}{1,1,1}
+  \postercolumn{
+    \begin{postersection}[equal height group=decisions]{One pass}
+      \centering
+      {\fontsize{52bp}{58bp}\selectfont\bfseries 16\,s slower\par}
+      Staging costs 64\,s. One local read recovers only 48\,s of that cost.\par
+    \end{postersection}
+  }
+  \postercolumn{
+    \begin{postersection}[equal height group=decisions]{Two passes}
+      \centering
+      {\fontsize{52bp}{58bp}\selectfont\bfseries 32\,s saved\par}
+      The second read pays for staging. Total time falls from 208\,s to 176\,s.\par
+    \end{postersection}
+  }
+  \postercolumn{
+    \begin{postersection}[equal height group=decisions]{Four passes with eviction}
+      \centering
+      {\fontsize{52bp}{58bp}\selectfont\bfseries 64\,s saved\par}
+      A second staging step costs another 64\,s and halves the four-pass gain.\par
+    \end{postersection}
+  }
+\end{posterrow}
+\endgroup

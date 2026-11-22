@@ -1,34 +1,43 @@
 # Research poster template
 
-An A0 portrait poster with optional KIT, HLRS, or custom branding. Edit the title and authors in `main.tex` and the poster body in `content.tex`. 
-
-For your own institution, copy [brands/template.tex](brands/template.tex), update the logo, affiliation, website, and palette, then select the new profile by filename in `main.tex`.
+LaTeX poster template with A0 landscape, A0 portrait, and custom page sizes.
 
 <a href="template-preview.png">
-  <img src="template-preview.png" alt="A0 sample poster using the custom brand template" width="540">
+  <img src="template-preview.png" alt="A0 landscape sample poster" width="540">
 </a>
 
-| File | Purpose |
+## Build
+
+Install LaTeX with `latexmk` and Biber. Run this from the repository root.
+
+```sh
+latexmk -pdf main.tex
+```
+
+Open `main.pdf`.
+
+## Customize
+
+- [main.tex](main.tex) has a **Poster settings** block for paper size, brand, layout mode, title, authors, and contact.
+- [content.tex](content.tex) holds the poster sections. Edit the TikZ figures in [figures.tex](figures.tex) and the bibliography in [references.bib](references.bib).
+- Select `template`, `kit`, or `hlrs` with `\useposterbrand`. Comment out the command for an unbranded poster. For a custom brand, copy [brands/template.tex](brands/template.tex) and select the copy by filename without the `.tex` extension.
+
+## Layout
+
+| Paper preset | Width × height |
 |---|---|
-| `main.tex` | Entry point for the title, authors, brand, and shared layout options. |
-| `content.tex` | Poster body, including section order, column weights, accents, and figure placements. |
-| `figures.tex` | Editable TikZ figures for the sample poster. |
-| `brands/` | Brand profiles, color palettes, and vector logo PDFs. |
-| `poster.sty` | Page geometry, typography, branding, and layout commands. |
-| `posterscaled.tex` | Optional A1 export from the compiled `main.pdf`. |
+| `a0-landscape` | 118.9 × 84.1 cm |
+| `a0-portrait` | 84.1 × 118.9 cm |
+| `conference-wide` | 140 × 90 cm |
 
-## Branding and layout
-
-- Enable `\useposterbrand{kit}`, `\useposterbrand{hlrs}`, or `\useposterbrand{your-institute}` in `main.tex`. Leaving it commented gives the unbranded layout.
-- Set shared spacing and heading treatment with `\postersetup` in `main.tex`. Choose section accents in `content.tex`. Callouts inherit the current accent unless given a color.
-- Each `posterrow` takes one relative weight per column. Use a row inside a section for a shared heading, or place sections inside columns for independent stacks.
-
-Font overrides belong in the brand profile. HLRS selects Overpass when it is installed and the poster is built with LuaLaTeX (`latexmk -lualatex main.tex`) or XeLaTeX. pdfLaTeX uses the base font.
+- Override dimensions with `\posterpaper[width=135cm,height=90cm]{conference-wide}`.
+- Use `flow=canvas` for explicit rows or `flow=columns` for automatic columns on wide paper.
+- Give each `posterrow` one relative weight per column, such as `{2,1}`. Use `\posterspacer` between stacked sections or rows.
+- Adjust spacing with `\postersetup`. Common keys are `gap`, `gutter`, `padding`, `paragraph gap`, and `edge inset`.
+- Check the PDF page count after changing the dimensions or content.
 
 ## License and credits
 
-The LaTeX code, original sample figures, and generic text wordmark are available under the [MIT License](LICENSE). 
-
-KIT's research posters inspired the layout. [KIT poster templates](https://kit-cd.km.kit.edu/latex.php)
-
-The KIT and HLRS logos remain subject to their respective owners’ rights. This project is independent of both institutions.
+The LaTeX code, original sample figures, and generic text wordmark use the [MIT License](LICENSE). 
+The layout is inspired by [KIT's poster templates](https://kit-cd.km.kit.edu/latex.php). 
+The KIT and HLRS logos remain subject to their owners’ rights. This project is independent of both institutions.
