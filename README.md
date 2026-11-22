@@ -29,7 +29,9 @@ Open `main.pdf`.
 | `a0-landscape` | 118.9 × 84.1 cm |
 | `a0-portrait` | 84.1 × 118.9 cm |
 | `conference-wide` | 140 × 90 cm |
+| `open` | 118.9 cm wide, height follows content |
 
+- Draft with `\posterpaper{open}`. Set a different working width with `\posterpaper[width=100cm]{open}`.
 - Override dimensions with `\posterpaper[width=135cm,height=90cm]{conference-wide}`.
 - Use `flow=canvas` for explicit rows or `flow=columns` for automatic columns on wide paper.
 - Give each `posterrow` one relative weight per column, such as `{2,1}`. Use `\posterspacer` between stacked sections or rows.

@@ -38,6 +38,7 @@
 \newcommand{\institute}[1]{\renewcommand{\poster@institute}{#1}}
 \newcommand{\instadd}[1]{\renewcommand{\poster@group}{#1}}
 
+\newif\ifposter@open
 \newif\ifposter@wide
 \pgfkeys{/poster paper/.is family,/poster paper,
   width/.store in=\poster@paperwidth,
@@ -49,12 +50,14 @@
     \pgfkeysalso{width=1189mm,height=841mm}
     \postersetup{body size=40bp,body leading=49bp,heading size=48bp,
       padding=8mm,gap=8mm}},
+  preset/open/.code={\pgfkeysalso{preset=a0-landscape}\poster@opentrue},
   preset/conference-wide/.code={\poster@widetrue
     \pgfkeysalso{width=1400mm,height=900mm}
     \postersetup{body size=38bp,body leading=46bp,heading size=48bp}},
   preset=a0-portrait
 }
 \NewDocumentCommand{\posterpaper}{O{}m}{%
+  \poster@openfalse
   \pgfkeys{/poster paper/.cd,preset=#2,#1}%
 }
 \@onlypreamble\posterpaper
@@ -96,6 +99,25 @@
   \fi
   \hypersetup{pdftitle={\@title},pdfauthor={\@author},
     linkcolor=posterSecondary,citecolor=posterPrimary,urlcolor=posterPrimary}%
+}
+% Measure the draft once at its working width, including the header and footer.
+\newbox\poster@draft
+\AddToHook{begindocument/end}{%
+  \ifposter@open \setbox\poster@draft=\vbox\bgroup \fi
+}
+\AddToHook{enddocument}{%
+  \ifposter@open
+    \par\egroup
+    \advance\paperheight by -\textheight
+    \textheight=\dimexpr\ht\poster@draft+\dp\poster@draft\relax
+    \advance\paperheight by \textheight
+    \vsize=\textheight \@colht=\textheight \@colroom=\textheight
+    \ifPDFTeX \pdfpageheight=\paperheight
+    \else\ifLuaTeX \pageheight=\paperheight
+    \else \special{papersize=\the\paperwidth,\the\paperheight}%
+    \fi\fi
+    \box\poster@draft
+  \fi
 }
 \pagestyle{empty}
 

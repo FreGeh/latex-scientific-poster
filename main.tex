@@ -3,7 +3,7 @@
 \usepackage{poster}
 
 % --- Poster settings ---------------------------------------------------------
-% Paper presets: a0-landscape, a0-portrait, conference-wide.
+% Paper presets: a0-landscape, a0-portrait, conference-wide, open (content-height draft).
 \posterpaper{a0-landscape}
 % Brand profiles: template, kit, hlrs. Comment out for an unbranded poster.
 \useposterbrand{template}
@@ -12,6 +12,7 @@
 
 \title{Data locality for repeated\texorpdfstring{\\}{ }scientific workflows}
 \author{A. Researcher, B. Researcher, C. Researcher}
+% Leave empty to omit the contact block.
 \newcommand{\postercontactemail}{researcher@example.org}
 
 % --- Typography overrides ---------------------------------------------------
@@ -22,6 +23,9 @@
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
 \addbibresource{references.bib}
 \renewcommand*{\bibfont}{\postersmall}
+\newtoggle{posterreferences}
+\AtDataInput{\global\toggletrue{posterreferences}}
+\defbibheading{posterreferences}{\noindent\textbf{References}\par\nobreak}
 \input{figures.tex}
 
 % --- Document layout --------------------------------------------------------
@@ -32,19 +36,23 @@
 \end{postercontent}
 
 % Keep the bibliography outside the body so every content row precedes it.
-\posterspacer
-\vfill
-\begingroup
-  \postersmall
-  \setlength{\parskip}{0pt}
-  \setlength{\bibitemsep}{\posterpargap}
-  \defbibheading{posterreferences}{\noindent\textbf{References}\par\nobreak}
-  \begin{posterrow}{3,1}
-    \postercolumn{\printbibliography[heading=posterreferences]}
-    \postercolumn{%
-      \raggedleft\textbf{Contact}\par
-      \postercontactemail\par
-    }
-  \end{posterrow}
-\endgroup
+\ifboolexpr{togl {posterreferences} or not test {\ifdefvoid{\postercontactemail}}}{%
+  \posterspacer
+  \vfill
+  \begingroup
+    \postersmall
+    \setlength{\parskip}{0pt}
+    \setlength{\bibitemsep}{\posterpargap}
+    \newcommand{\contactblock}{%
+      \raggedleft\textbf{Contact}\par\postercontactemail\par}
+    \iftoggle{posterreferences}{%
+      \ifdefvoid{\postercontactemail}
+        {\printbibliography[heading=posterreferences]}
+        {\begin{posterrow}{3,1}
+           \postercolumn{\printbibliography[heading=posterreferences]}
+           \postercolumn{\contactblock}
+         \end{posterrow}}%
+    }{\contactblock}%
+  \endgroup
+}{}
 \end{document}
